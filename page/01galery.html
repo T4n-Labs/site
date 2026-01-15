@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T4n Company</title>
+    <link rel="stylesheet" href="../assets/style.css">
+    <!-- Font Awesome untuk Ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="header">
+        <nav class="navbar">
+            <a href="../index.html" class="nav-logo">T4n Company</a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="../index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Galeri</a></li>
+
+                <li class="nav-item"><a href="../page/02product.html" class="nav-link">Product</a></li>
+
+                <li class="nav-item"><a href="../page/03news.html" class="nav-link">News</a></li>
+            </ul>
+            <div class="social-icons">
+                <a href="https://github.com/t4n-company" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="#" target="_blank" title="GitLab"><i class="fab fa-gitlab"></i></a>
+                <a href="#" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" target="_blank" title="Discord"><i class="fab fa-discord"></i></a>
+                <a href="#" target="_blank" title="Reddit"><i class="fab fa-reddit-alien"></i></a>
+            </div>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="gallery-page" class="section">
+            <div class="container">
+                <div class="page-header">
+                    <a href="../index.html" class="back-button"><i class="fas fa-arrow-left"></i> Kembali ke Beranda</a>
+                    <h1 class="section-title">Galeri Kami</h1>
+                    <p class="section-subtitle">Sebuah cuplikan dari perjalanan dan hasil kerja kami.</p>
+                </div>
+                
+                <div class="gallery-page-container">
+                    <!-- Item 1: Foto di kiri, teks di kanan -->
+                    <div class="gallery-item-page">
+                        <img src="../assets/galery/T4n-Maker.png" class="gallery-page-image gallery-item">
+                        <div class="gallery-page-content">
+                            <h3>T4n OS</h3>
+                            <p>Proses pembuatan T4n OS dengan cara Fork repo Void Linux mklive, Menambahkan Variant : Base, Server, XFCE4, BSPWM, KDE & River</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 2: Foto di kanan, teks di kiri -->
+                    <div class="gallery-item-page even">
+                        <img src="https://placehold.co/500x500/1e1e1e/00bcd4?text=VUR+Repository" alt="Antarmuka VUR Repository" class="gallery-page-image gallery-item">
+                        <div class="gallery-page-content">
+                            <h3>VUR (Void User Repository)</h3>
+                            <p>Jendela ke dunia perangkat lunak komunitas. Ribuan paket tersedia, siap diunduh dan digunakan untuk mempercepat pengembangan proyek Anda.</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 3: Foto di kiri, teks di kanan -->
+                    <div class="gallery-item-page">
+                        <img src="https://placehold.co/500x500/1e1e1e/00bcd4?text=VUR-Helper+CLI" alt="VUR-Helper dalam Aksi" class="gallery-page-image gallery-item">
+                        <div class="gallery-page-content">
+                            <h3>VUR-Helper dalam Aksi</h3>
+                            <p>Kemudahan manajemen paket dalam genggaman. VUR-Helper menyederhanakan proses instalasi dan update, membuat pekerjaan lebih efisien.</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 4: Foto di kanan, teks di kiri -->
+                    <div class="gallery-item-page even">
+                        <img src="https://placehold.co/500x500/1e1e1e/00bcd4?text=Komunitas+Berkumpul" alt="Sesi Workshop Komunitas" class="gallery-page-image gallery-item">
+                        <div class="gallery-page-content">
+                            <h3>Berkolaborasi untuk Indonesia</h3>
+                            <p>Kami percaya pada kekuatan komunitas. Dalam setiap workshop dan pertemuan, kami berbagi ilmu dan membangun bersama demi masa depan teknologi negeri.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 T4n Company.</p>
+        </div>
+    </footer>
+
+    <!-- Lightbox for Gallery -->
+    <div id="lightbox" class="lightbox">
+        <span class="close-lightbox">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+    </div>
+
+    <script src="../assets/script.js"></script>
+</body>
+</html>
