@@ -1,112 +1,712 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>T4n Tech | Company</title>
-    <meta name="description" content="T4n Tech adalah Company berbasis komunitas yang berfokus pada pengembangan Open-Source, Kemudahan, dan Transparan.">
-    <link rel="icon" href="assets/logo/t4n-tech.svg" type="image/svg+xml">
-    
-    <!-- Font Google -->
+    <title>T4n Labs | Build. Break. Innovate.</title>
+    <meta name="description" content="T4n Labs - Komunitas developer & security research collective.">
+
+    <!-- Fonts: JetBrains Mono (Coding feel) & Inter (Clean text) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Poppins:wght@500;700&display=swap" rel="stylesheet">
-    
-    <!-- FontAwesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 
-    <!-- File CSS Eksternal -->
-    <link rel="stylesheet" href="assets/style.css">
+    <!-- Tailwind CSS (via CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bg: '#0d0d0d',
+                        neon: '#00ff9f',
+                        neonDim: 'rgba(0, 255, 159, 0.1)',
+                        darkCard: '#161616',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    animation: {
+                        'pulse-fast': 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS -->
+    <style>
+        /* Base Styles */
+        body {
+            background-color: #0d0d0d;
+            color: #e5e5e5;
+            overflow-x: hidden;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0d0d0d;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1a1a1a;
+            border: 1px solid #00ff9f;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00ff9f;
+        }
+
+        /* Neon Glow Utilities */
+        .text-glow {
+            text-shadow: 0 0 10px rgba(0, 255, 159, 0.5);
+        }
+        .box-glow {
+            box-shadow: 0 0 15px rgba(0, 255, 159, 0.1);
+        }
+        .box-glow-hover:hover {
+            box-shadow: 0 0 20px rgba(0, 255, 159, 0.3);
+            border-color: #00ff9f;
+        }
+
+        /* Glassmorphism */
+        .glass {
+            background: rgba(22, 22, 22, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Cursor for Typing Effect */
+        .typing-cursor::after {
+            content: '|';
+            animation: blink 1s step-start infinite;
+        }
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        /* Grid Background Canvas Container */
+        #canvas-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: -1;
+            overflow: hidden;
+            background: radial-gradient(circle at center, #111 0%, #0d0d0d 100%);
+        }
+
+        /* Scroll Animation Utility */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Terminal Style */
+        .terminal-box {
+            background: #000;
+            border: 1px solid #333;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+        .terminal-header {
+            background: #1a1a1a;
+            padding: 5px 10px;
+            border-bottom: 1px solid #333;
+            display: flex;
+            gap: 6px;
+        }
+        .dot { width: 10px; height: 10px; border-radius: 50%; }
+    </style>
 </head>
-<body>
-    <!-- HEADER -->
-    <header>
-        <div class="container nav-container">
-            <a href="#" class="brand">T4n <span>Tech</span></a>
-            
-            <nav>
-                <ul class="nav-links" id="navLinks">
-                    <li><a class="nav-link active" href="#">Home</a></li>
-                    <li><a class="nav-link" href="page/gallery.html">Gallery</a></li>
-                    <li><a class="nav-link" href="page/product.html">Product</a></li>
-                    <li><a class="nav-link" href="page/news.html">News</a></li>
-                </ul>
-            </nav>
-            
-            <div class="social-icons">
-                <a href="https://github.com/T4n-Labs/" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                <a href="#" aria-label="Discord"><i class="fab fa-discord"></i></a>
-                <a href="#" aria-label="Reddit"><i class="fab fa-reddit-alien"></i></a>
-                <a href="https://www.youtube.com/channel/UCPI_EsKI4C-XdoB5LKaBOiw" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                <a href="https://www.instagram.com/t4n_tech/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            </div>
+<body class="antialiased selection:bg-neon selection:text-black">
 
-            <div class="hamburger" id="hamburger">
-                <i class="fas fa-bars"></i>
-            </div>
-        </div>
-    </header>
-
-    <main>
-        <!-- HERO SECTION -->
-        <div class="hero">
-            <div class="container hero-content">
-                <h1>Inovasi Tanpa Batas<br><span class="text-gradient">Masa Depan Digital</span></h1>
-                <p>Dari Bangsa Untuk Bangsa, Dari Komunitas Untuk Komunitas</p>
-                <div class="cta-group">
-                    <a href="page/product.html" class="btn btn-primary">Explore Products</a>
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass border-b border-white/5 top-0 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center gap-2">
+                    <!-- Logo Icon -->
+                    <div class="w-8 h-8 bg-neon/10 border border-neon flex items-center justify-center rounded">
+                        <span class="text-neon font-bold font-mono">T</span>
+                    </div>
+                    <span class="font-mono font-bold text-xl tracking-tighter text-white">T4n<span class="text-neon">Labs</span></span>
                 </div>
-
-                <!-- Visi & Misi -->
-                <div class="vision-mission">
-                    <div class="vm-card">
-                        <i class="fas fa-eye fa-2x" style="color: var(--accent-gold); margin-bottom: 20px;"></i>
-                        <h3>Visi Kami</h3>
-                        <p>Mengubah teknologi yang rumit menjadi pengalaman yang sederhana, aman, dan bermakna, dengan menjembatani kompleksitas sistem modern agar dapat dipahami, dipercaya, dan dimanfaatkan oleh individu, komunitas, serta organisasi.</p>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8 font-mono text-sm">
+                        <a href="#about" class="hover:text-neon transition-colors duration-300">About</a>
+                        <a href="#divisions" class="hover:text-neon transition-colors duration-300">Divisions</a>
+                        <a href="#projects" class="hover:text-neon transition-colors duration-300">Projects</a>
+                        <a href="#members" class="hover:text-neon transition-colors duration-300">Members</a>
+                        <a href="#contact" class="px-4 py-2 border border-neon text-neon hover:bg-neon hover:text-black transition-all duration-300 rounded-sm">Join Us</a>
                     </div>
-                    <div class="vm-card">
-                        <i class="fas fa-rocket fa-2x" style="color: var(--accent-purple); margin-bottom: 20px;"></i>
-                        <h3>Misi Kami</h3>
-                        <p>1. Menyederhanakan sesuatu yang kompleks tanpa mengorbankan.</p>
-                        <p>2. Membangun kepercayaan melalui teknologi yang terbuka</p>
-                    </div>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="-mr-2 flex md:hidden">
+                    <button type="button" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-400 hover:text-white p-2">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
                 </div>
             </div>
         </div>
+        <!-- Mobile Menu -->
+        <div class="hidden md:hidden glass border-t border-white/5" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 font-mono">
+                <a href="#about" class="block px-3 py-2 rounded-md hover:text-neon">About</a>
+                <a href="#divisions" class="block px-3 py-2 rounded-md hover:text-neon">Divisions</a>
+                <a href="#projects" class="block px-3 py-2 rounded-md hover:text-neon">Projects</a>
+                <a href="#members" class="block px-3 py-2 rounded-md hover:text-neon">Members</a>
+                <a href="#contact" class="block px-3 py-2 text-neon font-bold">Join Us</a>
+            </div>
+        </div>
+    </nav>
 
-        <!-- PROFILE SECTION -->
-        <section id="founder" class="section section-compact">
-            <div class="container">
-                <h2 class="section-title">T4n Tech</h2>
-                <p class="section-subtitle">Tim T4n Tech</p>
-                <div class="developers-grid">
-                    <div class="developer-card">
-                        <img src="https://github.com/gh0st4n.png" alt="Gh0sT4n's Profile Picture" class="developer-img">
-                        <h3>Gh0sT4n . Muhammad Luthfi Fakhmar</h3>
-                        <p>Founder T4n Tech & IT</p>
-                        <div class="developer-socials">
-                            <a href="https://github.com/gh0st4n" target="_blank" class="developer-link">
-                                <i class="fab fa-github"></i> GitHub
-                            </a>
-                            <span class="developer-separator">•</span>
-                            <a href="https://instagram.com/gh0st4n_" target="_blank" class="developer-link">
-                                <i class="fab fa-instagram"></i> Instagram
-                            </a>
+    <!-- Hero Section -->
+    <section class="relative h-screen flex items-center justify-center overflow-hidden">
+        <!-- Background Canvas Animation -->
+        <div id="canvas-container">
+            <canvas id="heroCanvas"></canvas>
+        </div>
+
+        <div class="relative z-10 text-center px-4 max-w-5xl mx-auto">
+            <div class="inline-block mb-4 px-3 py-1 border border-neon/30 rounded-full bg-neon/5 backdrop-blur-sm">
+                <span class="text-neon font-mono text-xs tracking-widest uppercase">System Online</span>
+            </div>
+            
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold font-mono mb-6 tracking-tight text-white">
+                T4n <span class="text-neon text-glow">Labs</span>
+            </h1>
+            
+            <div class="text-xl md:text-3xl font-mono text-gray-300 mb-6 h-10">
+                <span id="typewriter" class="typing-cursor"></span>
+            </div>
+
+            <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 font-light leading-relaxed">
+                We are a community focused on development, security research, and open-source innovation. 
+                Building the future from the underground.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#projects" class="group relative px-8 py-3 bg-transparent overflow-hidden rounded-sm border border-neon text-neon font-mono font-bold transition-all hover:bg-neon hover:text-black">
+                    <span class="relative z-10">Explore Projects</span>
+                    <div class="absolute inset-0 h-full w-full scale-0 rounded-sm transition-all duration-300 group-hover:scale-100 group-hover:bg-neon/20"></div>
+                </a>
+                <a href="#about" class="px-8 py-3 border border-gray-700 text-gray-300 font-mono font-bold rounded-sm hover:border-white hover:text-white transition-all">
+                    Learn More
+                </a>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <svg class="w-6 h-6 text-neon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-bg relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="reveal">
+                    <h2 class="text-3xl md:text-4xl font-bold font-mono mb-6 text-white">Who Are <span class="text-neon">We?</span></h2>
+                    <p class="text-gray-400 mb-4 leading-relaxed">
+                        T4n Labs is not a company, nor is it a solo venture. We are a <strong>collective</strong> of developers, security researchers, and open-source enthusiasts.
+                    </p>
+                    <p class="text-gray-400 mb-6 leading-relaxed">
+                        Born from the desire to explore technology without boundaries, we operate like an underground digital laboratory. We experiment, we break things to understand them, and we build tools that matter.
+                    </p>
+                    
+                    <div class="grid grid-cols-1 gap-4 mt-8">
+                        <div class="flex items-center gap-4 p-4 border border-white/5 rounded-lg bg-darkCard/50 hover:border-neon/50 transition-colors">
+                            <div class="p-2 bg-neon/10 rounded text-neon">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-white font-mono">Software Development</h3>
+                                <p class="text-sm text-gray-500">Building robust systems from scratch.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4 p-4 border border-white/5 rounded-lg bg-darkCard/50 hover:border-neon/50 transition-colors">
+                            <div class="p-2 bg-neon/10 rounded text-neon">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-white font-mono">Security Research</h3>
+                                <p class="text-sm text-gray-500">Bug hunting, vulnerability analysis, and defense.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4 p-4 border border-white/5 rounded-lg bg-darkCard/50 hover:border-neon/50 transition-colors">
+                            <div class="p-2 bg-neon/10 rounded text-neon">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path></svg>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-white font-mono">Open Source</h3>
+                                <p class="text-sm text-gray-500">Contributing back to the community ecosystem.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Terminal Style Visual -->
+                <div class="reveal delay-200">
+                    <div class="terminal-box rounded-lg shadow-2xl box-glow h-full min-h-[300px] flex flex-col">
+                        <div class="terminal-header rounded-t-lg">
+                            <div class="dot bg-red-500"></div>
+                            <div class="dot bg-yellow-500"></div>
+                            <div class="dot bg-green-500"></div>
+                            <span class="ml-2 text-xs text-gray-500">root@t4n-labs:~/mission</span>
+                        </div>
+                        <div class="p-6 flex-1 text-green-400 font-mono text-sm md:text-base leading-relaxed overflow-hidden">
+                            <p class="mb-2"><span class="text-blue-400">➜</span> <span class="text-yellow-300">init</span> collective.mission</p>
+                            <p class="mb-2 text-gray-500">Loading modules...</p>
+                            <p class="mb-2">> <span class="text-neon">Development</span> module loaded [OK]</p>
+                            <p class="mb-2">> <span class="text-neon">Security</span> module loaded [OK]</p>
+                            <p class="mb-2">> <span class="text-neon">Innovation</span> protocol active [OK]</p>
+                            <p class="mt-4 border-t border-gray-800 pt-4">
+                                <span class="text-purple-400">user@t4n</span>:<span class="text-blue-400">~</span>$ cat philosophy.txt<br>
+                                "We don't just use technology. We dissect it, improve it, and share it."
+                            </p>
+                            <div class="mt-2 animate-pulse">_</div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
-    <!-- FOOTER -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 T4n Tech. All Rights Reserved.</p>
+    <!-- Divisions Section -->
+    <section id="divisions" class="py-24 bg-[#0a0a0a] border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-neon font-mono text-sm tracking-widest mb-2">FOCUS AREAS</h2>
+                <h3 class="text-3xl md:text-4xl font-bold text-white">Our <span class="text-gray-500">Divisions</span></h3>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="group p-8 border border-white/10 bg-darkCard rounded-lg hover:border-neon/50 transition-all duration-300 hover:-translate-y-2 box-glow-hover reveal">
+                    <div class="w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center mb-6 group-hover:bg-neon group-hover:text-black transition-colors text-neon">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-3 font-mono">Development</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Specialized in system-level programming using <span class="text-neon">Zig</span> and <span class="text-neon">Python</span>. We build tools for Linux environments and optimize performance.
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="group p-8 border border-white/10 bg-darkCard rounded-lg hover:border-neon/50 transition-all duration-300 hover:-translate-y-2 box-glow-hover reveal delay-100">
+                    <div class="w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center mb-6 group-hover:bg-neon group-hover:text-black transition-colors text-neon">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-3 font-mono">Security</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Deep dive into Bug Hunting and vulnerability research. We analyze exploits and develop defensive security mechanisms.
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="group p-8 border border-white/10 bg-darkCard rounded-lg hover:border-neon/50 transition-all duration-300 hover:-translate-y-2 box-glow-hover reveal delay-200">
+                    <div class="w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center mb-6 group-hover:bg-neon group-hover:text-black transition-colors text-neon">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-3 font-mono">Infrastructure</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Crafting custom Operating Systems (T4n OS), internal tools, and optimizing the underlying infrastructure for maximum efficiency.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-24 bg-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12 reveal">
+                <div>
+                    <h2 class="text-neon font-mono text-sm tracking-widest mb-2">PORTFOLIO</h2>
+                    <h3 class="text-3xl md:text-4xl font-bold text-white">Active <span class="text-gray-500">Projects</span></h3>
+                </div>
+                <div class="mt-4 md:mt-0">
+                    <a href="#" class="text-neon font-mono text-sm hover:underline flex items-center gap-2">
+                        View Repository 
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Project 1: T4n OS -->
+                <div class="bg-darkCard border border-white/10 rounded-lg overflow-hidden hover:border-neon/50 transition-all duration-300 group reveal">
+                    <div class="h-40 bg-gradient-to-br from-gray-800 to-black flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-30"></div>
+                        <h4 class="text-2xl font-bold text-white font-mono z-10 group-hover:scale-110 transition-transform">T4n OS</h4>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-xs font-mono text-neon border border-neon/30 px-2 py-0.5 rounded">Operating System</span>
+                            <span class="text-xs font-mono text-green-500 flex items-center gap-1">
+                                <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> Active
+                            </span>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-4">Custom lightweight Linux distribution designed for penetration testing and development workflows.</p>
+                    </div>
+                </div>
+
+                <!-- Project 2: VUR Helper -->
+                <div class="bg-darkCard border border-white/10 rounded-lg overflow-hidden hover:border-neon/50 transition-all duration-300 group reveal delay-100">
+                    <div class="h-40 bg-gradient-to-br from-gray-800 to-black flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-20"></div>
+                        <h4 class="text-2xl font-bold text-white font-mono z-10 group-hover:scale-110 transition-transform">VUR Helper</h4>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-xs font-mono text-blue-400 border border-blue-400/30 px-2 py-0.5 rounded">Tool</span>
+                            <span class="text-xs font-mono text-green-500 flex items-center gap-1">
+                                <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> Active
+                            </span>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-4">Automation utility for vulnerability reporting and reconnaissance tasks.</p>
+                    </div>
+                </div>
+
+                <!-- Project 3: VUR Web -->
+                <div class="bg-darkCard border border-white/10 rounded-lg overflow-hidden hover:border-neon/50 transition-all duration-300 group reveal delay-200">
+                    <div class="h-40 bg-gradient-to-br from-gray-800 to-black flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/circuit-board.png')] opacity-20"></div>
+                        <h4 class="text-2xl font-bold text-white font-mono z-10 group-hover:scale-110 transition-transform">VUR Web</h4>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-xs font-mono text-purple-400 border border-purple-400/30 px-2 py-0.5 rounded">Web App</span>
+                            <span class="text-xs font-mono text-green-500 flex items-center gap-1">
+                                <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> Active
+                            </span>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-4">Web-based interface for managing security assessments and collaborative reporting.</p>
+                    </div>
+                </div>
+
+                <!-- Project 4: Learn Together -->
+                <div class="bg-darkCard border border-white/10 rounded-lg overflow-hidden hover:border-neon/50 transition-all duration-300 group reveal">
+                    <div class="h-40 bg-gradient-to-br from-gray-800 to-black flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/diagmonds-light.png')] opacity-10"></div>
+                        <h4 class="text-xl font-bold text-white font-mono z-10 group-hover:scale-110 transition-transform text-center px-4">Learn Together</h4>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-xs font-mono text-yellow-400 border border-yellow-400/30 px-2 py-0.5 rounded">Education</span>
+                            <span class="text-xs font-mono text-yellow-500">Ongoing</span>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-4">Collective learning modules covering Python, Zig, and Bug Hunting fundamentals.</p>
+                    </div>
+                </div>
+
+                 <!-- Project 5: Other Tools -->
+                 <div class="bg-darkCard border border-white/10 rounded-lg overflow-hidden hover:border-neon/50 transition-all duration-300 group reveal delay-100">
+                    <div class="h-40 bg-gradient-to-br from-gray-800 to-black flex items-center justify-center relative overflow-hidden">
+                        <svg class="w-12 h-12 text-gray-600 group-hover:text-neon transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-xs font-mono text-gray-400 border border-gray-600 px-2 py-0.5 rounded">Utilities</span>
+                            <span class="text-xs font-mono text-blue-500">Experimental</span>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-4">A collection of miscellaneous scripts, Exploit PoCs, and custom system utilities.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Members Section -->
+    <section id="members" class="py-24 bg-[#0a0a0a] border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-neon font-mono text-sm tracking-widest mb-2">THE TEAM</h2>
+                <h3 class="text-3xl md:text-4xl font-bold text-white">Key <span class="text-gray-500">Contributors</span></h3>
+            </div>
+
+            <div class="flex justify-center">
+                <!-- Member Card: Gh0sT4n -->
+                <div class="w-full max-w-sm bg-darkCard border border-white/10 rounded-xl p-6 text-center hover:border-neon/50 transition-all duration-300 reveal group box-glow-hover relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-neon to-transparent opacity-50"></div>
+                    
+                    <div class="relative w-24 h-24 mx-auto mb-4">
+                        <div class="absolute inset-0 bg-neon rounded-full blur opacity-20 group-hover:opacity-40 transition-opacity"></div>
+                        <!-- Avatar Placeholder -->
+                        <img src="https://ui-avatars.com/api/?name=Gh0sT4n&background=0d0d0d&color=00ff9f&bold=true&size=128" alt="Gh0sT4n" class="relative w-full h-full rounded-full border-2 border-neon/30 object-cover">
+                        <div class="absolute bottom-0 right-0 w-6 h-6 bg-green-500 border-2 border-darkCard rounded-full" title="Online"></div>
+                    </div>
+
+                    <h4 class="text-xl font-bold text-white font-mono mb-1">Gh0sT4n</h4>
+                    <p class="text-neon text-xs font-mono uppercase tracking-wider mb-4">Founder & Developer</p>
+                    
+                    <p class="text-gray-400 text-sm mb-6">
+                        Lead architect behind T4n OS and security research initiatives. Passionate about low-level programming and system internals.
+                    </p>
+
+                    <div class="flex justify-center gap-4">
+                        <a href="#" class="text-gray-500 hover:text-white transition-colors" title="GitHub">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                        </a>
+                        <a href="#" class="text-gray-500 hover:text-neon transition-colors" title="Email">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="text-center text-gray-600 text-sm mt-8 font-mono">+ Open Source Contributors worldwide</p>
+        </div>
+    </section>
+
+    <!-- Contact / Join Section -->
+    <section id="contact" class="py-24 bg-bg relative overflow-hidden">
+        <!-- Decoration Elements -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+            <div class="absolute top-1/4 left-10 w-64 h-64 bg-neon/5 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-1/4 right-10 w-96 h-96 bg-neon/5 rounded-full blur-3xl"></div>
+        </div>
+
+        <div class="max-w-4xl mx-auto px-4 text-center relative z-10 reveal">
+            <h2 class="text-4xl md:text-5xl font-bold font-mono text-white mb-6">Ready to <span class="text-neon text-glow">Break</span> the Code?</h2>
+            <p class="text-gray-400 text-lg mb-10 max-w-2xl mx-auto">
+                Join T4n Labs. Contribute to our projects, learn security research, or build the next generation of tools with us.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
+                <a href="https://github.com/T4n-Labs" target="_blank" class="flex items-center gap-3 px-8 py-4 bg-neon text-black font-bold font-mono rounded hover:bg-white transition-colors duration-300 w-full sm:w-auto justify-center">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    Join on GitHub
+                </a>
+                <a href="mailto:contact@t4nlabs.dev" class="flex items-center gap-3 px-8 py-4 border border-gray-600 text-white font-bold font-mono rounded hover:border-white transition-colors duration-300 w-full sm:w-auto justify-center">
+                    Contact Us
+                </a>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center font-mono text-sm text-gray-500">
+                <div class="p-4 border border-white/5 rounded bg-darkCard/30">
+                    <span class="block text-2xl text-neon font-bold mb-1">Dev</span>
+                    Build
+                </div>
+                <div class="p-4 border border-white/5 rounded bg-darkCard/30">
+                    <span class="block text-2xl text-neon font-bold mb-1">Sec</span>
+                    Break
+                </div>
+                <div class="p-4 border border-white/5 rounded bg-darkCard/30">
+                    <span class="block text-2xl text-neon font-bold mb-1">OSS</span>
+                    Share
+                </div>
+                <div class="p-4 border border-white/5 rounded bg-darkCard/30">
+                    <span class="block text-2xl text-neon font-bold mb-1">Lab</span>
+                    Innovate
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black border-t border-white/10 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="text-gray-500 text-sm font-mono">
+                &copy; <script>document.write(new Date().getFullYear())</script> T4n Labs Community. All rights reserved.
+            </div>
+            <div class="flex gap-6 text-sm font-mono text-gray-500">
+                <a href="#" class="hover:text-neon transition-colors">Privacy</a>
+                <a href="#" class="hover:text-neon transition-colors">Terms</a>
+                <a href="#" class="hover:text-neon transition-colors">Sitemap</a>
+            </div>
         </div>
     </footer>
 
-    <!-- File JavaScript Eksternal -->
-    <script src="assets/script.js"></script>
+    <!-- JavaScript Logic -->
+    <script>
+        // --- 1. Typing Animation ---
+        const textElement = document.getElementById('typewriter');
+        const phrases = ["Build. Break. Innovate.", "Code. Secure. Deploy.", "Research. Develop. Share."];
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let typeSpeed = 100;
+
+        function type() {
+            const currentPhrase = phrases[phraseIndex];
+            
+            if (isDeleting) {
+                textElement.textContent = currentPhrase.substring(0, charIndex - 1);
+                charIndex--;
+                typeSpeed = 50;
+            } else {
+                textElement.textContent = currentPhrase.substring(0, charIndex + 1);
+                charIndex++;
+                typeSpeed = 100;
+            }
+
+            if (!isDeleting && charIndex === currentPhrase.length) {
+                isDeleting = true;
+                typeSpeed = 2000; // Pause at end
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                typeSpeed = 500; // Pause before new word
+            }
+
+            setTimeout(type, typeSpeed);
+        }
+
+        // Start Typing
+        document.addEventListener('DOMContentLoaded', type);
+
+
+        // --- 2. Scroll Reveal Animation ---
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+
+        // --- 3. Hero Canvas Animation (Moving Grid) ---
+        const canvas = document.getElementById('heroCanvas');
+        const ctx = canvas.getContext('2d');
+
+        let width, height;
+        let particles = [];
+
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        // Grid Configuration
+        const gridSize = 40;
+        let offset = 0;
+
+        // Particle Configuration
+        class Particle {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.size = Math.random() * 2;
+                this.speedX = (Math.random() - 0.5) * 0.5;
+                this.speedY = (Math.random() - 0.5) * 0.5;
+                this.opacity = Math.random() * 0.5 + 0.1;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x < 0) this.x = width;
+                if (this.x > width) this.x = 0;
+                if (this.y < 0) this.y = height;
+                if (this.y > height) this.y = 0;
+            }
+            draw() {
+                ctx.fillStyle = `rgba(0, 255, 159, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        // Initialize Particles
+        for (let i = 0; i < 50; i++) {
+            particles.push(new Particle());
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+            
+            // Draw Perspective Grid
+            ctx.strokeStyle = 'rgba(0, 255, 159, 0.1)';
+            ctx.lineWidth = 1;
+
+            // Vertical Lines (Perspective)
+            const centerX = width / 2;
+            for (let i = -10; i <= 10; i++) {
+                ctx.beginPath();
+                // Simple perspective simulation
+                const x = centerX + (i * gridSize * 4);
+                ctx.moveTo(centerX + (i * 20), height / 2); // Vanishing point area
+                ctx.lineTo(x + (i * 100), height); // Bottom spread
+                ctx.stroke();
+            }
+
+            // Horizontal Moving Lines
+            offset = (offset + 0.5) % gridSize;
+            for (let y = height / 2; y < height; y += gridSize) {
+                const drawY = y + offset;
+                if (drawY > height) continue;
+                
+                // Opacity fades as it gets closer to bottom
+                const alpha = (drawY - height/2) / (height/2) * 0.3;
+                ctx.strokeStyle = `rgba(0, 255, 159, ${alpha})`;
+                
+                ctx.beginPath();
+                ctx.moveTo(0, drawY);
+                ctx.lineTo(width, drawY);
+                ctx.stroke();
+            }
+
+            // Draw Particles
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+
+        // --- 4. Navbar Scroll Effect ---
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-lg', 'bg-black/80');
+                navbar.classList.remove('py-2');
+            } else {
+                navbar.classList.remove('shadow-lg', 'bg-black/80');
+                navbar.classList.add('py-2');
+            }
+        });
+
+    </script>
 </body>
 </html>
