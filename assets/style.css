@@ -1,0 +1,100 @@
+/* ============================================
+   T4n Labs — Custom Stylesheet
+   ============================================ */
+
+/* Base Styles */
+body {
+  background-color: #0d0d0d;
+  color: #e5e5e5;
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0d0d0d;
+}
+::-webkit-scrollbar-thumb {
+  background: #1a1a1a;
+  border: 1px solid #00ff9f;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #00ff9f;
+}
+
+/* Neon Glow Utilities */
+.text-glow {
+  text-shadow: 0 0 10px rgba(0, 255, 159, 0.5);
+}
+.box-glow {
+  box-shadow: 0 0 15px rgba(0, 255, 159, 0.1);
+}
+.box-glow-hover:hover {
+  box-shadow: 0 0 20px rgba(0, 255, 159, 0.3);
+  border-color: #00ff9f;
+}
+
+/* Glassmorphism */
+.glass {
+  background: rgba(22, 22, 22, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Cursor for Typing Effect */
+.typing-cursor::after {
+  content: "|";
+  animation: blink 1s step-start infinite;
+}
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Grid Background Canvas Container */
+#canvas-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: -1;
+  overflow: hidden;
+  background: radial-gradient(circle at center, #111 0%, #0d0d0d 100%);
+}
+
+/* Scroll Animation Utility */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+}
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Terminal Style */
+.terminal-box {
+  background: #000;
+  border: 1px solid #333;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.85rem;
+}
+.terminal-header {
+  background: #1a1a1a;
+  padding: 5px 10px;
+  border-bottom: 1px solid #333;
+  display: flex;
+  gap: 6px;
+}
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
