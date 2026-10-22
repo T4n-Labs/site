@@ -3,12 +3,79 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>T4n Labs | Freedom.</title>
-    <meta name="description" content="T4n Labs - Komunitas developer & security research collective." />
+    <!-- ===== SEO UTAMA =====
+         Catatan: konten halaman didominasi bahasa Inggris -> lang="en".
+         Jika ingin versi Bahasa Indonesia, buat file terpisah (mis. id.html)
+         lalu tambahkan hreflang, seperti pola situs T4n OS. -->
+    <title>T4n Labs | Open Source & Security Research Collective</title>
+    <!-- Description ideal 140-160 karakter, memuat nama proyek utama -->
+    <meta name="description" content="T4n Labs is an open source developer community and security research collective from Indonesia — building T4n OS, VUR, and Let-X together." />
+    <meta name="author" content="T4n Labs" />
+    <meta name="keywords" content="T4n Labs, open source, security research, T4n OS, VUR, Let-X, developer community, komunitas developer Indonesia" />
+    <!-- Instruksi crawling + preview gambar besar di Google Images/Discover -->
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <!-- Canonical: URL resmi situs T4n Labs -->
+    <link rel="canonical" href="https://t4nlabs.web.id/" />
+    <meta name="theme-color" content="#0a0a0a" />
     <!-- Favicon Utama -->
     <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/icons.png" />
     <link rel="icon" type="image/png" sizes="192x192" href="assets/icons/icons.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icons.png" />
+
+    <!-- ===== OPEN GRAPH (Facebook, WhatsApp, Discord, LinkedIn) ===== -->
+    <meta property="og:site_name" content="T4n Labs" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://t4nlabs.web.id/" />
+    <meta property="og:title" content="T4n Labs | Open Source & Security Research Collective" />
+    <meta property="og:description" content="Open source, simple & transparent. We build T4n OS, VUR, and Let-X — from the community, by the community." />
+    <!-- OG image idealnya 1200x630 px; sementara memakai avatar GitHub organisasi -->
+    <meta property="og:image" content="https://github.com/t4n-labs.png" />
+    <meta property="og:image:alt" content="Logo T4n Labs" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- ===== TWITTER CARD ===== -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="T4n Labs | Open Source & Security Research Collective" />
+    <meta name="twitter:description" content="Open source, simple & transparent. We build T4n OS, VUR, and Let-X." />
+    <meta name="twitter:image" content="https://github.com/t4n-labs.png" />
+
+    <!-- ===== STRUCTURED DATA (schema.org JSON-LD) =====
+     WebSite + Organization (founder + sameAs sosial media) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://t4nlabs.web.id/#website",
+          "name": "T4n Labs",
+          "url": "https://t4nlabs.web.id/",
+          "inLanguage": "en",
+          "publisher": { "@id": "https://t4nlabs.web.id/#organization" }
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://t4nlabs.web.id/#organization",
+          "name": "T4n Labs",
+          "alternateName": "T4n Labs Community",
+          "url": "https://t4nlabs.web.id/",
+          "logo": "https://github.com/t4n-labs.png",
+          "description": "Open source developer community and security research collective from Indonesia, building T4n OS, VUR, and Let-X.",
+          "founder": {
+            "@type": "Person",
+            "name": "Gh0sT4n",
+            "url": "https://github.com/gh0st4n"
+          },
+          "sameAs": [
+            "https://github.com/T4n-Labs",
+            "https://gitlab.com/t4n-labs",
+            "https://www.instagram.com/t4n_labs",
+            "https://discord.gg/yM5s7RWBxq"
+          ]
+        }
+      ]
+    }
+    </script>
 
     <!-- Fonts: JetBrains Mono & Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -32,7 +99,7 @@
           <div class="flex items-center gap-2">
             <!-- Logo Icon -->
             <div class="w-8 h-8 bg-neon/10 border border-neon flex items-center justify-center rounded">
-              <img src="https://github.com/t4n-labs.png" alt="T4n Labs Logo" />
+              <img src="https://github.com/t4n-labs.png" alt="T4n Labs Logo" width="32" height="32" decoding="async" />
             </div>
             <span class="font-mono font-bold text-xl tracking-tighter text-white">
               T4n<span class="text-neon">Labs</span>
@@ -69,6 +136,8 @@
       </div>
     </nav>
 
+    <!-- MAIN: membungkus seluruh konten utama untuk semantik & SEO -->
+    <main>
     <!-- Hero Section -->
     <section class="relative h-screen flex items-center justify-center overflow-hidden">
       <!-- Background Canvas Animation -->
@@ -352,9 +421,9 @@
     <section id="members" class="py-24 bg-[#0a0a0a] border-t border-white/5">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16 reveal">
-          <h3 class="text-3xl md:text-4xl font-bold text-white">
+          <h2 class="text-3xl md:text-4xl font-bold text-white">
             THE <span class="text-gray-500">TEAM MAINTAINER</span>
-          </h3>
+          </h2>
         </div>
 
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
@@ -364,7 +433,7 @@
 
             <div class="relative w-24 h-24 mx-auto mb-4">
               <div class="absolute inset-0 bg-neon rounded-full blur opacity-20 group-hover:opacity-40 transition-opacity"></div>
-              <img src="https://github.com/gh0st4n.png" alt="Gh0sT4n" class="relative w-full h-full rounded-full border-2 border-neon/30 object-cover" />
+              <img src="https://github.com/gh0st4n.png" alt="Gh0sT4n - Founder & Core Developer T4n Labs" width="96" height="96" loading="lazy" decoding="async" class="relative w-full h-full rounded-full border-2 border-neon/30 object-cover" />
               <div class="absolute bottom-0 right-0 w-6 h-6 bg-green-500 border-2 border-darkCard rounded-full" title="Online"></div>
             </div>
 
@@ -399,7 +468,7 @@
 
             <div class="relative w-24 h-24 mx-auto mb-4">
               <div class="absolute inset-0 bg-neon rounded-full blur opacity-20 group-hover:opacity-40 transition-opacity"></div>
-              <img src="https://github.com/Fata-ID.png" alt="Fata-ID" class="relative w-full h-full rounded-full border-2 border-neon/30 object-cover" />
+              <img src="https://github.com/Fata-ID.png" alt="Fata-ID - Web Maintainer T4n Labs" width="96" height="96" loading="lazy" decoding="async" class="relative w-full h-full rounded-full border-2 border-neon/30 object-cover" />
               <div class="absolute bottom-0 right-0 w-6 h-6 bg-green-500 border-2 border-darkCard rounded-full" title="Online"></div>
             </div>
 
@@ -434,7 +503,7 @@
 
             <div class="relative w-24 h-24 mx-auto mb-4">
               <div class="absolute inset-0 bg-neon rounded-full blur opacity-20 group-hover:opacity-40 transition-opacity"></div>
-              <img src="https://github.com/zufarmaliki10-ui.png" alt="zufarmaliki10-ui" class="relative w-full h-full rounded-full border-2 border-neon/30 object-cover" />
+              <img src="https://github.com/zufarmaliki10-ui.png" alt="zufarmaliki10-ui - Web Developer T4n Labs" width="96" height="96" loading="lazy" decoding="async" class="relative w-full h-full rounded-full border-2 border-neon/30 object-cover" />
               <div class="absolute bottom-0 right-0 w-6 h-6 bg-green-500 border-2 border-darkCard rounded-full" title="Online"></div>
             </div>
 
@@ -527,6 +596,8 @@
         </div>
       </div>
     </section>
+
+    </main>
 
     <!-- Footer -->
     <footer class="bg-black border-t border-white/10 py-8">
